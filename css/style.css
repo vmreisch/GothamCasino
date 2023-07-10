@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 70%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poiret One";
+  font-weight: 400;
+  height: 100vh;
+  color: yellow;
+  background-color: rgb(68, 66, 66);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* LAYOUT */
+main {
+  position: relative;
+  width: 100rem;
+  height: 60rem;
+  background-color: rgba(255, 255, 255, 0.35);
+  border-radius: 9px;
+  overflow: hidden;
+  display: flex;
+}
+
+.player {
+  flex: 55%;
+  padding: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ELEMENTS */
+.name {
+  position: relative;
+  font-size: 6rem;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.score {
+  font-size: 8rem;
+  font-weight: 300;
+  color: YELLOW;
+  margin-bottom: auto;
+}
+
+.player-active {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.player-active .name {
+  font-weight: 700;
+}
+.player-active .score {
+  font-weight: 400;
+}
+
+.player-active .current {
+  opacity: 1;
+}
+
+.current {
+  background-color: BLACK;
+  border-radius: 11px;
+  color: #fff;
+  width: 75%;
+  padding: 4rem;
+  text-align: center;
+}
+
+.current-label {
+  margin-bottom: 1rem;
+  font-size: 2.7rem;
+  color: WHITE;
+}
+
+.current-score {
+  font-size: 5.5rem;
+}
+
+/* ABSOLUTE POSITIONED ELEMENTS */
+.btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #444;
+  font-family: inherit;
+  font-size: 2rem;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 0.7rem 2.5rem;
+  border-radius: 70rem;
+  box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
+}
+
+.btn-new {
+  top: 4rem;
+}
+.btn-roll {
+  top: 39.3rem;
+}
+.btn-hold {
+  top: 46.1rem;
+}
+
+.btn:active {
+  transform: translate(-50%, 3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.dice {
+  position: absolute;
+  left: 50%;
+  top: 16.5rem;
+  height: 10rem;
+  transform: translateX(-50%);
+}
+
+.player-winner {
+  background-color: #2f2f2f;
+}
+
+.player-winner .name {
+  font-weight: 700;
+  color: #c7365f;
+}
+
+.hidden {
+  display: none;
+}
