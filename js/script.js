@@ -16,6 +16,56 @@ score1El.text(0);
 diceEl.addClass("hidden");
 
 let scores, currentScore, activePlayer, playing;
+const heroArr = [561, 165, 69];
+const villainArr = [370, 558, 60];
+
+function randomChar() {
+  return Math.floor(Math.random() * 3);
+}
+
+const heroBackground = $("#hero");
+const villainBackground = $("#villain");
+
+const fetchHeroImage = function () {
+  const heroImageEndpoint = `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/id/${
+    heroArr[randomChar()]
+  }.json`;
+  $.ajax({
+    url: heroImageEndpoint,
+    method: "GET",
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+      const imageUrl = response.images.md;
+      heroBackground.css("background-image", `url(${imageUrl})`);
+    },
+    error: function (error) {
+      console.log("Error:", error);
+    },
+  });
+};
+fetchHeroImage();
+
+const fetchVillainImage = function () {
+  const villainImageEndpoint = `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/id/${
+    villainArr[randomChar()]
+  }.json`;
+
+  $.ajax({
+    url: villainImageEndpoint,
+    method: "GET",
+    dataType: "json",
+    success: function (response) {
+      const imageUrl = response.images.md;
+      villainBackground.css("background-image", `url(${imageUrl})`);
+    },
+    error: function (error) {
+      console.log("Error:", error);
+    },
+  });
+};
+
+fetchVillainImage();
 
 const init = function () {
   scores = [0, 0];
@@ -73,88 +123,8 @@ btnHold.on("click", function () {
     }
   }
 });
-//btnNew.on("click", init);
-
-const heroCharacterId = "69";
-const villaintCharacterId = "370";
-
-const baseURL = "https://superheroapi.com/api/";
-const apiKey = "10159908020207473";
-
-const heroBackground = $("#hero");
-const villainBackground = $("#villain");
-
-const heroImageEndpoint = `${baseURL}${apiKey}/${heroCharacterId}/image`;
-const villainImageEndpoint = `${baseURL}${apiKey}/${villaintCharacterId}/image`;
-
-const fetchHeroImage = function () {
-  const heroImageEndpoint = `${baseURL}${apiKey}/${heroCharacterId}/image`;
-  // fetch(heroImageEndpoint)
-  //   .then((data) => data.json())
-  //   .then((data) => console.log(data));
-  $.ajax({
-    url: heroImageEndpoint,
-    method: "GET",
-    dataType: "json",
-    success: function (response) {
-      const imageUrl = response.url;
-      heroBackground.css("background-image", `url(${imageUrl})`);
-    },
-    error: function (error) {
-      console.log("Error:", error);
-    },
-  });
-};
-
-const fetchVillainImage = function () {
-  const villainImageEndpoint = `${baseURL}${apiKey}/${villaintCharacterId}/image`;
-
-  $.ajax({
-    url: villainImageEndpoint,
-    method: "GET",
-    dataType: "json",
-    success: function (response) {
-      const imageUrl = response.url;
-      villainBackground.css("background-image", `url(${imageUrl})`);
-    },
-    error: function (error) {
-      console.log("Error:", error);
-    },
-  });
-};
-
 btnNew.on("click", function () {
   init();
   fetchHeroImage();
   fetchVillainImage();
 });
-
-// function changeBackgroundImage(element, imageUrl) {
-//   element.css("background-image", `url(${imageUrl})`);
-// }
-
-// $.ajax({
-//   url: heroImageEndpoint,
-//   method: "GET",
-//   success: function (response) {
-//     const heroImageUrl = response.url;
-
-//     changeBackgroundImage(heroBackground, heroImageUrl);
-//   },
-//   error: function (error) {
-//     console.log("Error:", error);
-//   },
-// });
-
-// $.ajax({
-//   url: villainImageEndpoint,
-//   method: "GET",
-//   success: function (response) {
-//     const villainImageUrl = response.url;
-
-//     changeBackgroundImage(villainBackground, villainImageUrl);
-//   },
-//   error: function (error) {
-//     console.log("Error:", error);
-//   },
-// });
